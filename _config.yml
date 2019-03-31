@@ -1,11 +1,11 @@
 # Site settings
 author: Arthur Song
-title: 
+title: Between Codes
 header-img: img/home-bg.png
 email: arth3rs0ng@gmail.com
 copyright_name: Arthur Song
 description: > # this means to ignore newlines until "baseurl:"
-  
+  A blog about journey into coding
 baseurl: "" # the subpath of your site, e.g. /blog
 twitter_username: 
 github_username:  atribecalledarty
