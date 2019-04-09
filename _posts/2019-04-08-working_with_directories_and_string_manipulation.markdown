@@ -1,7 +1,7 @@
 ---
 layout: post
-title:      "Working With Directories & String Manipulation"
-date:       2019-04-08 07:23:02 +0000
+title:      "Working With Directories & File Names"
+date:       2019-04-08 03:23:03 -0400
 permalink:  working_with_directories_and_string_manipulation
 ---
 
@@ -42,7 +42,9 @@ The filename you end up getting from the files method looks like
     ./spec/fixtures/mp3s/Action Bronson - Larry Csonka - indie.mp3
 ```
 
-And you want it to just be
+****Edited, realized there was better way for this section, See below****
+
+And you want it to just be 
 
 ```
     Action Bronson - Larry Csonka - indie.mp3
@@ -61,6 +63,25 @@ And finally you iterate through the list, with collect to collect the parsed fil
     @files.collect do |file|
       file[21..-1]
     end
+```
+
+****Edit****
+
+I'm a little further down the course and just realized file[21..-1] is a bad way to do it because in the future you might have a path that is a different length. 
+
+For example if you have
+```
+    file = "./spec/fixtures/other_mp3s/Action Bronson - Larry Csonka - indie.mp3"
+    file [21..-1]
+```
+
+file[21..-1] will return "_mp3s/Action Bronson - Larry Csonka - indie.mp3"
+
+SO the right way is to use File.basename
+
+```
+    File.basename(file) #=> "Action Bronson - Larry Csonka - indie.mp3"
+    File.basename(file, ".*") #=> even better returns "Action Bronson - Larry Csonka - indie.mp3"
 ```
 
 I hope someone found this helpful. Good luck peeps!
