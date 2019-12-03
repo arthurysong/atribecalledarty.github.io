@@ -20,8 +20,8 @@ For example, here I have a lot of information loaded: the city Tucson, a zipcode
 
 Do I want to just hide everything OR do I want to clear all the elements with info and then hide everything?
 
-I decided the best thing to do is to both hide the elements and actually clear all the information like the zipcode information, the city information and etc. I came to this decision because doing so accurately represents what the intent of the selected action is.. Like although just simply hiding all the elements would be effectively doing the same thing, I thought, metaphorically, it made more sense that the DOM, although hidden, reflected what the page was showing..
+I decided the best thing to do is to both hide the elements and actually clear all the information like the zipcode information, the city information and etc. I came to this decision because doing so accurately represents what the intent of the selected action is.. Like although just simply hiding all the elements would be effectively doing the same thing, I thought, metaphorically, it made more sense that the DOM, although hidden, reflected what action was selected..
 
-I thought this was important distinction because coding like Avi says is like creating metaphors. We want our objects to be a metaphor, a representation of what the object is in real life. In that same way, our actions, in this case selecting '-' and the consequences of that action should properly reflect the intent. In this case selecting a blank city should clear all the info in the page.
+I thought this was an important distinction because coding like Avi says is like creating metaphors. We want our objects to be a metaphor, a representation of what the object is in real life. In that same way, our actions, in this case selecting '-' and the consequences of that action should properly reflect the intent. In this case selecting a blank city should both clear all the info in the elements and hide them.
 
 That was a fun and definitely challenging project that incorporated a lot of different things that I learned so far. I'm proud of myself and ready to move on to the next module!
