@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Programming is a Metaphor"
-date:       2019-12-03 02:31:19 +0000
+date:       2019-12-02 21:31:19 -0500
 permalink:  programming_is_a_metaphor
 ---
 
@@ -14,7 +14,7 @@ I've been looking into investing in real estate and wanted an app that will allo
 
 One thing that I found challenging about this app was all the different functionality that was required with one 'event'.
 
-![](https://imgur.com/a/tJMLvse)
+![](https://i.imgur.com/Ag2JMYL.png)
 
 For example, here I have a lot of information loaded: the city Tucson, a zipcode in that city, and also the homes sold recently in that city. What would I want to happen when I select '-' for the city select???
 
