@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Validating User Input (React Redux with Rails API)"
-date:       2020-03-01 02:05:21 +0000
+date:       2020-02-29 21:05:22 -0500
 permalink:  validating_user_input_react_redux_with_rails_api
 ---
 
@@ -122,7 +122,7 @@ This is what the postNewUser action looks like.
 ```
 export const postNewUser = (state) => {
     return dispatch => {
-        dispatch({ type: 'LOADING_RESOURCE' })
+        dispatch({ type: 'LOADING_RESOURCE' }) //<=== ignore this
 
         const body = JSON.stringify(state);
         fetch('http://localhost:3002/users', {
