@@ -12,8 +12,7 @@ So, I have a React application that loads users from Rails API and stores in red
 I also am using thunk so I can pass my redux reducer a function.
 
 I want to create a new user in the Rails database using form inputs on the front end.
-And I want to validate user input against validations I have in the models in the Rails API.
-I could find basic tutorials on how to validate the form inputs on the front end, but I couldn't find anything on using backend Rails validations to validate the user input.
+And I want to validate user input against validations I have in the models in the Rails API RATHER than validating the inputs on the front end.
 
 This was important because I wanted some attributes like usernames to be unique for each user.
 
