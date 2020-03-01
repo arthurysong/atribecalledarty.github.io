@@ -1,6 +1,6 @@
 ---
 layout: post
-title:      "Validating User Input (React Redux with Rails API)"
+title:      "Validating User Input with Backend Models (React Redux with Rails API)"
 date:       2020-02-29 21:05:22 -0500
 permalink:  validating_user_input_react_redux_with_rails_api
 ---
