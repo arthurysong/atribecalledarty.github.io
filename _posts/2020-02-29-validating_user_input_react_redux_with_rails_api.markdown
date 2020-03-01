@@ -18,8 +18,6 @@ This was important because I wanted some attributes like usernames to be unique 
 
 I wanted the front end to send a post request to the api to create a new user. If the created user was not valid, I wanted the API to return errors, which would then be displayed by the front end. If user was valid, then send the new saved user, which would be added to redux state.
 
-This is how I decided to validate using the backend models.
-
 SETUP:
 
 I have a User model in Rails API with some validations.
@@ -39,7 +37,7 @@ end
 
 This is my component CreateUser with state controlled forms.
 This component is connected to redux store and has access to state and dispatch.
-When form is submitted it will send post request to Rails API with the state.
+When form is submitted it will send post request to Rails API with the state (form inputs).
 
 ```
 class CreateUser extends React.Component {
@@ -144,11 +142,12 @@ export const postNewUser = (state) => {
 }
 ```
 
-When dispatch(postNewUser(state)) gets called in CreateUser, the following happens. The state (form inputs of new user) gets sent to Rails API using fetch request. THEN, Rails User Controller does one of two things. If the inputs are valid and the new user created saved to the database, it will send back the JSON for that user. IF user is NOT valid, the API will send JSON with key 'errors'.
+When dispatch(postNewUser(state)) gets called in CreateUser, the following happens. The state (form inputs of new user) gets sent to Rails API using fetch request. THEN, Rails User Controller does one of two things. If the inputs are valid and the new user created saves to the database, it will send back the JSON for that user. IF user is NOT valid, the API will send JSON with key 'errors'.
 
 This is my User create action that handles post request to /users.
 
 ```
+//users_controller in rails backend
     def create
         user = User.new(user_params)
         if user.save
@@ -255,8 +254,8 @@ const FormErrors = ({ errors }) => {
 So that is basically how I used Rails model validations to validate the inputs and display any errors. And if there are no errors it will dispatch the ADD_NEW_USER action, and add the proper user to the redux state.
 
 In conclusion, I needed to
-1. add an errors array to my redux state to store any errors from fetch requests
-2. in my user controller, send back either errors if user cannot save or a valid saved user
-3. in my action generator for dispatch, have if statement for when API sends errors
-4. finally display errors
+1. Add an errors array to my redux state to store any errors from fetch requests
+2. In my user controller, send back either errors if user cannot save or a valid saved user
+3. In my action generator for dispatch, have if statement for when API sends errors
+4. Finally display any errors
 
