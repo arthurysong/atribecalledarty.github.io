@@ -259,3 +259,5 @@ In conclusion, I needed to
 3. In my action generator for dispatch, have if statement for when API sends errors
 4. Finally display any errors
 
+Here is my the link to my GitHub repo for my project if you need a closer look: https://github.com/atribecalledarty/i-manage
+
