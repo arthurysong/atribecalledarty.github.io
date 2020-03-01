@@ -153,7 +153,7 @@ This is my User create action that handles post request to /users.
     def create
         user = User.new(user_params)
         if user.save
-            render json: UserSerializer.new(user).to_serialized_json
+            render json: UserSerializer.new(user).to_serialized_json //<=== UserSerializer customizes json of the user object
         else 
             render json: { errors: user.errors.full_messages }
         end
@@ -182,7 +182,7 @@ export default function manageResources (state = { units: [], users: [], loading
                 ...state,
                 units: [ ...state.units ],
                 users: [ ...state.users, action.user ],
-                loading: false,
+                loading: false, //<== don't worry about this
                 errors: []
             }
         case 'ADD_ERRORS':
@@ -190,7 +190,7 @@ export default function manageResources (state = { units: [], users: [], loading
                 ...state,
                 units: [ ...state.units ],
                 users: [ ...state.users ],
-                loading: false,
+                loading: false, //<== don't worry about this
                 errors: [ ...action.user.errors ]
             }
         default:
