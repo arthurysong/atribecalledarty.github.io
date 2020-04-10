@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "React LifeCycle Methods"
-date:       2020-04-10 18:52:36 +0000
+date:       2020-04-10 14:52:37 -0400
 permalink:  react_lifecycle_methods
 ---
 
