@@ -23,8 +23,11 @@ In my project I have many components that utilize a form. If a user tries to sub
 
 
 ```
-//in Login Component
-<FormErrors errors={this.props.errors} clearErrors={this.props.clearErrors}/>
+//simple example from Login Component
+<form onSubmit={submitHandler}>
+   <FormErrors errors={this.props.errors} clearErrors={this.props.clearErrors}/>
+   //different form inputs
+</form>
 ```
 
 ```
@@ -54,11 +57,11 @@ class FormErrors extends React.Component {
 export default FormErrors;
 ```
 
-When user submits invalid inputs, it will display the red error messages. 
+When user submits invalid inputs, `this.props.errors` will be populated with errors, and FormErrors will display red error messages. 
 
 ![image](https://i.imgur.com/jak68K6.png)
 
-I use FormErrors component in many different forms including NewPaymentForm, NewUserForm, NewResidentForm, Login, and SignupForm. The problem is when a user submits a bad form and decides to navigate to a different form, that other form will display the same errors that were created from the original form. So for example, error messages generated from the Login component will display when user switches to SignupForm.
+I use FormErrors component in many different forms including NewPaymentForm, NewUserForm, NewResidentForm, Login, and SignupForm. The problem is when a user submits a bad form and decides to navigate to a different form, that other form will display the same errors that were created from the original form. For example, error messages generated from the Login component will continue to display when user switches to SignupForm.
 
 ![image2](https://i.imgur.com/fFpThR5.png)
 
@@ -71,16 +74,18 @@ componentWillUnmount() {
 }
 ```
 
-*`componentWillUnmount()` is the last method that is executed before the component is removed from the DOM*. This is the perfect place to clean up any generated errors from a component. Any form that unmounts should clean up the errors, which is stored in Redux state, so that any other components that use FormErrors will have a 'new' FormErrors component.
+`this.props.clearErrors()` is mapped to a dispatch action that will clear the errors key in my redux state. 
 
-`this.props.clearErrors()` is mapped to a dispatch action that will clear the errors key in my redux state. So now anytime the FormErrors component unmounts, the errors in my redux state will be deleted, and when I navigate to a different form there will be no more errors.
+*`componentWillUnmount()` is the last method that is executed before the component is removed from the DOM*. This is the perfect place to clean up any generated errors from a component. Any time FormErrors unmounts, it should clean up the errors, which is stored in Redux state, so that any other components that use FormErrors will have a 'new' FormErrors component.
+
+Now, anytime the FormErrors component unmounts, the errors in my redux state will be deleted, and when I navigate to a different form there will be a clean FormErrors component.
 
 ### ComponentDidMount() & ComponentDidUpdate()
 **`componentDidMount()` and `componentDidUpdate()` were very useful for directing the webflow of the application.** 
 
-For example, when a user successfully creates his account, he should be redirected again to their account page. 
+For example, when a user successfully creates his account, he should be redirected again to his account page. 
 
-For my project I used Rails sessions to keep track of user authentication, and stored the `isLoggedIn` status of the application and logged in `user` in Redux state. For more information about authetication check out my other [blog post](https://atribecalledarty.github.io/how_i_authenticated_users_react_application_w_rails_api) about authenticating and authorizing users.
+For my project I used Rails sessions to keep track of user authentication, and stored the `isLoggedIn` status of the application and logged in `user` in Redux state. For more information about authetication, check out my other [blog post](https://atribecalledarty.github.io/how_i_authenticated_users_react_application_w_rails_api) about authenticating users.
 
 This is my form SignupForm.
 
@@ -128,10 +133,10 @@ class NewUserForm extends React.Component {
 export default NewUserForm;
 ```
 
-*`componentDidUpdate()` will fire any time an update, a change to state or props, occurs.*
+*`componentDidUpdate()` is invoked any time an update, a change to state or props, occurs.*
 This includes when my form inputs change and also when any props that may be connected to Redux state changes.
 
-This component has access to the prop `isLoggedIn.` When a user successfully creates the account, user will be logged in, setting `isLoggedIn` to true, which will prompt the `componentDidUpdate()` method. In `componentDidUpdate()`, we specify if `isLoggedIn` is true, redirect the url to `/users/${this.props.user.id}`.
+This component has access to the prop `isLoggedIn.` When a user successfully creates the account, user will be logged in, setting `isLoggedIn` to true. This will prompt the `componentDidUpdate()` method, where we will redirect the url to `/users/${this.props.user.id}`. We also specify to check if `isLoggedIn` is true because many other updates, like changes to the state controlled inputs, will invoke the `componentDidUpdate()` and it should only redirect if user has successfully logged in.
 
 Now when a user successfully creates an account, `componentDidUpdate()` will be invoked, redirecting the website!
 
